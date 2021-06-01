@@ -1,0 +1,69 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <p-toast></p-toast>
+
+    <div class="card">
+        <p-table [value]="talhoes">
+          <ng-template pTemplate="caption">
+              <button pButton label="Incluir" icon="pi pi-plus" class="p-button p-mt-2" (click)="novo()"></button>
+          </ng-template>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Código</th>
+                  <th>Nome</th>
+                  <th>Área</th>
+                  <th>Produtividade</th>
+                  <th></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-talhao>
+              <tr>
+                  <td>{{talhao.codigo}}</td>
+                  <td>{{talhao.nome}}</td>
+                  <td>{{talhao.area}}</td>
+                  <td>{{talhao.produtividade}}</td>
+                  <td>
+                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button p-mr-2" (click)="edit(talhao)"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button" (click)="delete(talhao)"></button>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+    </div>
+
+    <p-dialog [(visible)]="dialogTalhao" header="Talhão" [modal]="true" styleClass="p-fluid">
+      <ng-template pTemplate="content">
+        <div class="p-field">
+          <label for="nome">Nome</label>
+          <input type="text" pInputText id="nome" [(ngModel)]="talhao.nome" required>
+        </div>
+        <div class="p-field">
+          <label for="area">Área</label>
+          <input type="text" pInputText id="area" [(ngModel)]="talhao.area" required>
+        </div>
+        <div class="p-field">
+          <label for="fazenda">Fazenda</label>
+          <p-dropdown [options]="fazendas" [(ngModel)]="talhao.fazenda" optionLabel="nome" appendTo="body"
+            placeholder="Selecione uma Fazenda"></p-dropdown>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <button pButton label="CANCELAR" icon="pi pi-times" class="p-button-text" (click)="ocultarDialogTalhao()"></button>
+        <button pButton label="SALVAR" icon="pi pi-check" class="p-button-success" (click)="salvar(talhao)"></button>
+      </ng-template>
+    </p-dialog>
+
+    <p-dialog [(visible)]="dialogProducao" [style]="{width: '700px'}" header="Produção">
+      <app-producao></app-producao>
+    </p-dialog>
+
+    <p-confirmDialog #cd [style]="{width: '450px'}">
+      <p-footer>
+        <button pButton icon="pi pi-times" label="NÃO" class="p-button-text" (click)="cd.reject()"></button>
+        <button pButton icon="pi pi-check" label="SIM" class="p-button-success" (click)="cd.accept()"></button>
+      </p-footer>
+    </p-confirmDialog>
+
+  </div>
+</div>
+

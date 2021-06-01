@@ -1,0 +1,29 @@
+{
+	"data": [
+		{
+      "codigo":"1000",
+      "nome":"Fazenda Campos Belos",
+      "produtividade":45
+		},
+		{
+			"codigo": "1001",
+			"nome": "Fazenda Sol da Manhã",
+			"produtividade": 67
+		},
+		{
+			"codigo": "1002",
+			"nome": "Fazenda Viver no Campo",
+			"produtividade": 79
+		},
+		{
+			"codigo": "1003",
+			"nome": "Fazenda Fonte Imperial",
+			"produtividade": 29
+		},
+		{
+			"codigo": "1004",
+			"nome": "Fazenda Bela Porteira",
+			"produtividade": 10
+		}
+	]
+}

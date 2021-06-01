@@ -1,0 +1,58 @@
+<div class="p-grid">
+  <div class="p-col-12">
+    <p-toast></p-toast>
+
+    <div class="card">
+
+        <p-table [value]="fazendas">
+          <ng-template pTemplate="caption">
+              <button pButton label="Incluir" icon="pi pi-plus" class="p-button p-mt-2" (click)="novo()"></button>
+          </ng-template>
+          <ng-template pTemplate="header">
+              <tr>
+                  <th>Código</th>
+                  <th>Nome</th>
+                  <th>Produtividade</th>
+                  <th></th>
+              </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-fazenda>
+              <tr>
+                  <td>{{fazenda.codigo}}</td>
+                  <td>{{fazenda.nome}}</td>
+                  <td>{{fazenda.produtividade}}</td>
+                  <td>
+                    <button pButton icon="pi pi-pencil" class="p-button-rounded p-button p-mr-2" (click)="edit(fazenda)"></button>
+                    <button pButton icon="pi pi-trash" class="p-button-rounded p-button" (click)="delete(fazenda)"></button>
+                  </td>
+              </tr>
+          </ng-template>
+      </p-table>
+
+    </div>
+
+    <p-dialog [(visible)]="dialogTalhoes" [style]="{width: '700px'}" header="Fazenda">
+      <app-talhao></app-talhao>
+    </p-dialog>
+
+    <p-dialog [(visible)]="dialogFazenda" header="Fazenda" [modal]="true" styleClass="p-fluid">
+      <ng-template pTemplate="content">
+        <label for="nome">Nome</label>
+        <input type="text" pInputText id="nome" [(ngModel)]="fazenda.nome" required autofocus>
+      </ng-template>
+      <ng-template pTemplate="footer">
+        <button pButton label="CANCELAR" icon="pi pi-times" class="p-button-text" (click)="ocultarDialogFazenda()"></button>
+        <button pButton label="SALVAR" icon="pi pi-check" class="p-button-success" (click)="salvar(fazenda)"></button>
+      </ng-template>
+    </p-dialog>
+
+    <p-confirmDialog #cd [style]="{width: '450px'}">
+      <p-footer>
+        <button pButton icon="pi pi-times" label="NÃO" class="p-button-text" (click)="cd.reject()"></button>
+        <button pButton icon="pi pi-check" label="SIM" class="p-button-success" (click)="cd.accept()"></button>
+      </p-footer>
+    </p-confirmDialog>
+
+  </div>
+</div>
+
